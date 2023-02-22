@@ -1,0 +1,125 @@
+@use "../../styles/partials/mixins" as responsive;
+
+.navigation {
+    &__container {
+        display: flex;
+        align-items:center;
+        justify-content: space-between;
+
+        @include responsive.tablet {
+            margin: 0;
+            padding: 0;
+            width: 200px;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 6.25rem;
+            align-items: center;
+            background-color: #393B53;
+        }
+
+        &-logo {
+            color: #FFF;
+            z-index: 99;
+
+            @include responsive.tablet {
+                font-size: 2.125rem;
+            }
+        }
+
+
+        &-nav {
+            display: none;
+
+            @include responsive.tablet {
+                display: block;
+            }
+
+            &__link {
+                display: block;
+                color: #CFD0ED;
+                padding: 16px;
+                text-decoration: none;
+
+                @include responsive.tablet {
+                    font-size: 1.5rem;
+                }
+            }
+        }
+
+        &-mobile-nav {
+            min-height: 100vh;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 100%;
+            z-index: 98;
+            display: block;
+            background-color: #2E3047;
+            padding-top: 7.5rem;
+            transition: 0.4s;
+
+            @include responsive.tablet {
+                display: none;
+            }
+
+            &__link {
+                display: block;
+                text-align: center;
+                margin-bottom: 1rem;
+                padding: .75rem 1rem;
+                background-color: #53546D;
+                text-decoration: none;
+                color: #CFD0ED;
+                margin: 0 auto 1rem;
+                width: 50%;
+            }
+        }
+
+        &-mobile-nav.is-active {
+            left: 0;
+        }
+
+        &-hamburger {
+            position: relative;
+            display: block;
+            width: 2.5rem;
+            height: 2.5rem;
+            cursor: pointer;
+            appearance: none;
+            background: none;
+            outline: none;
+            border: none;
+            z-index: 99;
+
+            @include responsive.tablet {
+                display: none;
+            }
+
+            &__bar, &::before, &::after {
+                content: '';
+                display: block;
+                width: 100%;
+                height: 5px;
+                background-color: #FFF;
+                margin: 6px 0;
+                transition: 0.4s;
+            }
+        }
+
+        &-hamburger.is-active::before {
+            transform: rotate(-45deg) translate(-7px, 6px);
+        }
+
+        &-hamburger.is-active::after {
+            transform: rotate(45deg) translate(-9px, -9px);
+        }
+
+        &-hamburger.is-active .navigation__container-hamburger__bar {
+            opacity: 0;
+        }
+    }
+}

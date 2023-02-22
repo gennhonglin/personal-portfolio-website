@@ -1,0 +1,13 @@
+@use "../../styles/partials/mixins" as responsive;
+
+.homepage {
+    min-height: 100vh;
+    overflow: auto;
+    background-color: #2E3047;
+    padding: 0 1rem;
+
+    @include responsive.tablet {
+        padding: 0;
+    }
+    
+}
